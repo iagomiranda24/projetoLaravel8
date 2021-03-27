@@ -1,0 +1,136 @@
+.clear {
+    clear: both;
+
+}
+
+
+body {
+    background-color: #f4fbfd;
+}
+
+.login {
+    border-radius: 25px;
+    padding: 75px;
+    border: 5px solid green;
+    margin: 100px auto;
+    width: 450px;
+}
+
+#inputs {
+    padding: 10px 20px;
+}
+
+.h1-login {
+
+    position: relative;
+
+    top: -30px;
+}
+
+
+.footer {
+    width: 100%;
+    background-color: #f4fbfd !important;
+    padding: 15px;
+    position: relative;
+    top: 24px;
+}
+
+.p-copy {
+
+    color: #0a58ca;
+
+    font-weight: bold;
+
+    text-align: center;
+}
+
+
+
+.login {
+    border-radius: 60px;
+    padding: 75px;
+    border: 5px solid lightskyblue;
+    margin: 100px auto;
+    width: 450px;
+    background: lightskyblue;
+}
+
+#title-form {
+
+    color: #198754;
+
+    font-size: 2.5em;
+
+    font-family: fantasy;
+
+}
+
+#form-login {
+
+    width: 600px;
+
+    margin: 100px auto;
+
+    border: 5px solid green;
+
+    padding: 100px;
+
+    border-radius: 50px;
+}
+
+#label-create-login {
+    color: green;
+    font-weight: bolder;
+}
+
+.header {
+    background: chocolate;
+    height: 83px;
+    width: 100%;
+    margin-top: -27px;
+}
+
+.nav-header {
+
+    margin-top: 18px;
+
+    text-align: center;
+}
+
+.a-cadastre-se:hover {
+
+    color: black;
+    text-transform: uppercase;
+
+}
+
+
+#table_id {
+    border: 1px solid chocolate;
+    border-radius: 10px;
+}
+
+
+.link-modal-cadastro {margin: 10px auto;position: relative;text-align: center;top: 40px;background-color: #a0dbff;width: 150px;height: 34px;border-radius: 10px;}
+
+.a-cadastre-se {color: #084298;text-decoration: none;font-size: 1.2em;font-weight: bolder;}
+
+#div-table-id{
+    margin: 10px auto;
+    position: relative;
+    top: 90px;
+    background: #0b5ed7;
+}
+
+#table_id {
+border: 4px solid;
+}
+
+.shadow {
+    border-radius: 20px;
+}
+ #nav-item1 {
+     position: absolute;
+     right: 50%;
+ }
