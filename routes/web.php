@@ -25,7 +25,6 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('deletar-produto/{id}', [produtosController::class, 'deletarProduto']);
 
     Route::get('users', [usersController::class, 'listarUsuarios']);
-
     Route::get('users/{id}', [usersController::class, 'mostraUserPeloId']);
 
     Route::post('logout', [usersController::class, 'logout']);
@@ -39,7 +38,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::delete('deletar-usuarios/{id}', [usersController::class, 'deletarUsuario']);
 
-});
+}); 
 
 Route::get('home', [produtosController::class, 'mostraAindex']);
 
