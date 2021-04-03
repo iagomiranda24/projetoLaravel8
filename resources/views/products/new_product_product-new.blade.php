@@ -8,7 +8,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-info">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{url('vizualizacao/home')}}"> <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+            <a class="navbar-brand" href="{{url('visualizacao/home')}}"> <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
                     <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
                 </svg> Início</a>
@@ -35,7 +35,7 @@
                     </li>
                         @endif
                 </ul>
-                <form class="" method="POST" action="{{url('usuarios/logout')}}">
+                <form class="" method="POST" action="{{url('logout')}}">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <button type="submit" class="btn btn-danger">Sair</button>
                 </form>
@@ -64,7 +64,7 @@
                 })
 
                 setTimeout(function () {
-                    window.location.href = '/vizualizacao/produtos';
+                    window.location.href = '/visualizacao/produtos';
                 }, 2000);
 
             </script>
@@ -90,7 +90,7 @@
                     })
 
                     setTimeout(function () {
-                        window.location.href = 'vizualizacao/produtos';
+                        window.location.href = 'visualizacao/produtos';
                     }, 2000);
 
                 </script>
@@ -103,7 +103,7 @@
             <div class="h1-login">
                 <h1 class="text-center" id="title-form"> Cadastrar produto </h1>
             </div>
-            <form class="form form-login" action="{{url('vizualizacao/cadastrar/produtos')}}" method="POST">
+            <form class="form form-login" action="{{url('visualizacao/cadastrar/produtos')}}" method="POST">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <label id="label-create-login"> Nome: </label>
                 <input id="inputs" type="text" name="name" placeholder="Digite o nome do produto" class="form-control"

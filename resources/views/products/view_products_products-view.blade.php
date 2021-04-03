@@ -21,7 +21,7 @@
             )
 
             setTimeout(function () {
-                window.location.href = '/vizualizacao/produtos';
+                window.location.href = '/visualizacao/produtos';
             }, 2000);
 
         </script>
@@ -38,7 +38,7 @@
             )
 
             setTimeout(function () {
-                window.location.href = '/vizualizacao/produtos';
+                window.location.href = '/visualizacao/produtos';
             }, 2000);
 
         </script>
@@ -47,7 +47,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-info">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{url('vizualizacao/home')}}"> <i class="fa fa-home"></i> Início</a>
+            <a class="navbar-brand" href="{{url('visualizacao/home')}}"> <i class="fa fa-home"></i> Início</a>
             <button class="navbar-toggler" type="button" data-bs-="collapse"
                     data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,14 +57,14 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     @if(Auth::user()->name =="administrador")
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{url('vizualizacao/usuarios')}}"> <i class="fa fa-users"></i>  Usúarios </a>
+                        <a class="nav-link active" href="{{url('visualizacao/usuarios')}}"> <i class="fa fa-users"></i>  Usúarios </a>
                     </li>
                     @endif
                     <li class="nav-item">
                         <a class="nav-link" href="#"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{url('vizualizacao/produtos')}}"><i
+                        <a class="nav-link active" aria-current="page" href="{{url('visualizacao/produtos')}}"><i
                                 class="fa fa-list"></i> Listar produtos</a>
                     </li>
                     <li class="nav-item">
@@ -198,7 +198,7 @@
                     <div class="modal-body">
                         <p class="text-danger"><b>Deseja realmente excluir esse registro ?</b></p>
                         <div class="modal-body">
-                            <form class="form form-login" action='{{url("deletar-produto/$id_delete")}}' method="POST">
+                            <form class="form form-login" action='{{url("deletar/produto/$id_delete")}}' method="POST">
                                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                                 <input type="hidden" name="_method" value="DELETE">
                         </div>

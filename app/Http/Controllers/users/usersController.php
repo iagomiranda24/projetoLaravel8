@@ -101,9 +101,9 @@ class usersController extends \App\Http\Controllers\login\Controller
 
             $users = User::all();
 
-            $userComId = User::find($id_editar);
+            $user_id = User::find($id_editar);
 
-            return view('users.view_users_users-view', ['users' => $users, 'id_editar' => $id_editar, 'userComId' => $userComId]);
+            return view('users.view_users_users-view', ['users' => $users, 'id_editar' => $id_editar, 'user_id' => $user_id]);
 
         } else {
 
@@ -128,7 +128,7 @@ class usersController extends \App\Http\Controllers\login\Controller
 
             }
 
-            $atualizar = DB::table('users')->where('id', '=', $id)->update(['name' => $request->name, 'email' => $request->email]);
+            $editAnUser = DB::table('users')->where('id', '=', $id)->update(['name' => $request->name, 'email' => $request->email]);
 
             $msgSuccess1 = "O produto foi editado com sucesso";
 
@@ -148,9 +148,9 @@ class usersController extends \App\Http\Controllers\login\Controller
         if ($this->checkiFThereIsAUserLoggedIn() == true) {
 
 
-            $deletar = $user->find($id)->delete();
+            $delete = $user->find($id)->delete();
 
-            if ($deletar) {
+            if ($delete) {
 
                 $msgDeleteSuccess = "Item deletado com sucesso";
 

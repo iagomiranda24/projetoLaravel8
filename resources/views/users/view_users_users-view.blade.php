@@ -219,7 +219,7 @@
                     <div class="modal-body">
                         <p class="text-danger"><b>Deseja realmente excluir esse registro ?</b></p>
                         <div class="modal-body">
-                            <form class="form form-login" action='{{url("deletar-usuarios/$id_delete")}}' method="POST">
+                            <form class="form form-login" action='{{url("deletar/usuarios/$id_delete")}}' method="POST">
                                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <br>
@@ -232,8 +232,8 @@
             </div>
         </div>
     @endif
-    @if(isset($userComId))
-        @if(isset($id_editar))
+    @if(isset($user_id))
+        @if(isset($id_edit))
             <!-- Modal -->
             <div class="modal fade" id="Modal-edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -244,20 +244,20 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="form form-login" action='{{url("editar-usuarios/$id_editar")}}' method="POST">
+                            <form class="form form-login" action='{{url("editar/usuarios/$id_edit")}}' method="POST">
                                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                                 <input type="hidden" name="_method" value="PUT">
                                 <label id="label-create-login"> Nome: </label>
                                 <input id="name_produto" type="text" name="name" placeholder="Digite o nome do produto"
                                        class="form-control"
-                                       value="{{$userComId->name}}" required>
+                                       value="{{$user_id->name}}" required>
 
                                 <br>
                                 <label id="label-create-login"> Email: </label>
                                 <input id="estoque_produto" type="text" name="email"
                                        placeholder="Digite a descrição do produto"
                                        class="form-control"
-                                       value="{{$userComId->email}}" required>
+                                       value="{{$user_id->email}}" required>
 
                                 <br>
 

@@ -7,7 +7,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-info">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{url('home')}}"> <i class="fa fa-home"></i> Início</a>
+            <a class="navbar-brand" href="{{url('visualizacao/home')}}"> <i class="fa fa-home"></i> Início</a>
             <button class="navbar-toggler" type="button" data-bs-="collapse"
                     data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,8 +24,8 @@
                         <a class="nav-link" href="#"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{url('/vizualizacao/produtos')}}"><i
-                                class="fa fa-list"></i> Listar produtos</a>
+                        <a class="nav-link active" aria-current="page" href="{{url('/visualizacao/produtos')}}"><i
+                                class="fa fa-list"></i> produtos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"></a>
