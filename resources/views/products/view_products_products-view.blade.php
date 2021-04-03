@@ -10,6 +10,7 @@
 <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.js"></script>
 
 @section('content')
+
     @if(session('msgDeleteSuccess'))
 
         <script>
@@ -20,7 +21,7 @@
             )
 
             setTimeout(function () {
-                window.location.href = '/produtos';
+                window.location.href = '/vizualizacao/produtos';
             }, 2000);
 
         </script>
@@ -37,19 +38,16 @@
             )
 
             setTimeout(function () {
-                window.location.href = '/produtos';
+                window.location.href = '/vizualizacao/produtos';
             }, 2000);
 
         </script>
 
     @endif
 
-    <link rel="stylesheet" href="{{asset('assets/DataTables-1.10.23/css/jquery.dataTables.css')}}">
-    <script src="{{asset('assets/DataTables-1.10.23/js/jquery.dataTables.js')}}"></script>
-
     <nav class="navbar navbar-expand-lg navbar-light bg-info">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{url('home')}}"> <i class="fa fa-home"></i> Início</a>
+            <a class="navbar-brand" href="{{url('vizualizacao/home')}}"> <i class="fa fa-home"></i> Início</a>
             <button class="navbar-toggler" type="button" data-bs-="collapse"
                     data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,29 +57,18 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     @if(Auth::user()->name =="administrador")
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{url('users')}}"> <i class="fa fa-users"></i>  Usúarios </a>
+                        <a class="nav-link active" href="{{url('vizualizacao/usuarios')}}"> <i class="fa fa-users"></i>  Usúarios </a>
                     </li>
                     @endif
                     <li class="nav-item">
                         <a class="nav-link" href="#"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{url('/produtos')}}"><i
+                        <a class="nav-link active" aria-current="page" href="{{url('vizualizacao/produtos')}}"><i
                                 class="fa fa-list"></i> Listar produtos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"></a>
-                    </li>
-                    {{--                <li class="nav-item dropdown">--}}
-                    {{--                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">--}}
-                    {{--                    </a>--}}
-                    {{--                    <ul class="" aria-labelledby="navbarDropdown">--}}
-                    {{--                        <li><a class="dropdown-item" href="#">Action</a></li>--}}
-                    {{--                        <li><a class="dropdown-item" href="#">Another action</a></li>--}}
-                    {{--                        <li><hr class="dropdown-divider"></li>--}}
-                    {{--                        <li><a class="dropdown-item" href="#">Something else here</a></li>--}}
-                    {{--                    </ul>--}}
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"></a>
                     </li>
@@ -96,7 +83,7 @@
     <br>
 
     <div class="container">
-        <a href="{{url('cadastrar-produtos')}}" class="btn btn-info"><i class="fas fa-plus-square"
+        <a href="{{url('novo/produto}}" class="btn btn-info"><i class="fas fa-plus-square"
                                                                         style="color:aliceblue"></i> Adicionar produto
         </a>
     </div>
@@ -129,26 +116,26 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @forelse($produtos as $produto)
+                        @forelse($products as $product)
                             <tr>
                                 <td>
-                                    {{$produto->name}}
+                                    {{$product->name}}
                                 </td>
 
                                 <td>
-                                    {{$produto->descricao}}
+                                    {{$product->descricao}}
                                 </td>
 
                                 <td>
-                                    {{$produto->estoque}}
+                                    {{$product->estoque}}
                                 </td>
 
                                 <td>
-                                    <a href='{{url("produtos/$produto->id")}}'><i class="fas fa-eye mr-1"></i></a>
-                                    <a href='{{url("editar-produto/$produto->id")}}' id="editar-produto"> <i
-                                            class="fas fa-edit mr-1  text-info"></i></i></a>
-                                    <a href='{{url("deletar-produto/$produto->id")}}' class="" id="a-delete"><i
-                                            class="fas fa-trash mr-1 text-danger"></i></i></i></a>
+                                    <a href='{{url("visualizacao/produto/$product->id")}}'><i class="fas fa-eye mr-1"></i></a>
+                                    <a href='{{url("editar/produto/$product->id")}}' id="editar-produto"> <i
+                                            class="fas fa-edit mr-1  text-info"></i></a>
+                                    <a href='{{url("deletar/produto/$product->id")}}' class="" id="a-delete"><i
+                                            class="fas fa-trash mr-1 text-danger"></i></a>
 
                                 </td>
 
@@ -225,8 +212,8 @@
             </div>
         </div>
     @endif
-    @if(isset($produtoComId))
-        @if(isset($id_editar))
+    @if(isset($product_id))
+        @if(isset($id_edit))
             <!-- Modal -->
             <div class="modal fade" id="Modal-edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -237,20 +224,20 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="form form-login" action='{{url("editar-produto/$id_editar")}}' method="POST">
+                            <form class="form form-login" action='{{url("editar/produto/$id_edit")}}' method="POST">
                                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                                 <input type="hidden" name="_method" value="PUT">
                                 <label id="label-create-login"> Nome: </label>
                                 <input id="name_produto" type="text" name="name" placeholder="Digite o nome do produto"
                                        class="form-control"
-                                       value="{{$produtoComId->name}}" required>
+                                       value="{{$product_id->name}}" required>
 
                                 <br>
                                 <label id="label-create-login"> Estoque: </label>
                                 <input id="estoque_produto" type="text" name="estoque"
                                        placeholder="Digite a descrição do produto"
                                        class="form-control"
-                                       value="{{$produtoComId->estoque}}" required>
+                                       value="{{$product_id->estoque}}" required>
 
 
                                 <br>
@@ -258,7 +245,7 @@
                                 <input id="descricao_produto" type="text" name="descricao"
                                        placeholder="Digite a descrição do produto"
                                        class="form-control"
-                                       value="{{$produtoComId->descricao}}" required>
+                                       value="{{$product_id->descricao}}" required>
 
                                 <br>
                         </div>
@@ -280,7 +267,7 @@
 
     @endif
 
-    @if(!empty($id_editar))
+    @if(!empty($id_edit))
         <script>
             $(document).ready(function () {
                 $("#Modal-edit").modal("show");

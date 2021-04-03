@@ -4,51 +4,59 @@ namespace App\Http\Controllers\produtos;
 
 use App\Models\produto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use phpDocumentor\Reflection\DocBlock\Tags\Author;
 
 class produtosController extends \App\Http\Controllers\login\Controller
 {
-    public function viewCadastraProdutos()
+    public function createProduct()
     {
 
-        return view('produtos.cadastrar-produto');
+        return view('products.new_product_product-new');
 
     }
 
-    public function mostraAindex()
+    public function lookHome()
     {
 
         return view('index');
 
     }
 
-    public function viewDeLogin()
+    public function lookLogin()
+    {
+        if(Auth::check() == false) {
+
+            return view('users.view_login_login-view');
+
+        } else {
+
+            return redirect('vizualizacao/home');
+
+        }
+    }
+
+    public function readProducts()
     {
 
-        return view('users.login');
+        $products = produto::all();
+
+        return view('products.view_products_products-view', ['products' => $products]);
 
     }
 
-    public function mostraViewDeProdutos()
+    public function getProductByIdTo($id)
     {
 
-        $produtos = produto::all();
+        $product = produto::find($id);
 
-        return view('produtos.listar-produtos', ['produtos' => $produtos]);
+        return view('products.view_products_id_view-product-id', ['product' => $product]);
 
     }
 
-    public function mostraProdutoPeloId($id)
-    {
-
-        $produto = produto::find($id);
-
-        return view('produtos.listar-produtos-pelo-id', ['produto' => $produto]);
-
-    }
-
-    public function logicaCadastrarProdutos(Request $request)
+    public function createAnProduct(Request $request)
     {
 
         $validator = Validator::make($request->all(), ['name' => 'min:5|max:50',
@@ -57,7 +65,7 @@ class produtosController extends \App\Http\Controllers\login\Controller
 
         if ($validator->fails()) {
 
-            return redirect('cadastrar-produtos')
+            return redirect('novo/produto')
                 ->withErrors($validator)
                 ->withInput($request->all());
 
@@ -73,22 +81,23 @@ class produtosController extends \App\Http\Controllers\login\Controller
 
         $produto->save();
 
-        return redirect('cadastrar-produtos')
+        return redirect('novo/produto')
             ->with('msgSuccess', $msgSuccess);
-    }
-
-    public function pegaProdutoPeloIdParaEditar($id_editar) {
-
-        $produtos = produto::all();
-
-        $produtoComId = produto::find($id_editar);
-
-        return view('produtos.listar-produtos', ['produtos' => $produtos, 'id_editar' => $id_editar, 'produtoComId' => $produtoComId]);
-
 
     }
 
-    public function editarProduto(Request $request, $id, produto $produto)
+    public function getProductByIdToEdit($id_edit) {
+
+        $products = produto::all();
+
+        $product_id = produto::find($id_edit);
+
+        return view('products.view_products_products-view.blade', ['products' => $products, 'id_edit' => $id_edit, 'produto_Id' => $product_id]);
+
+
+    }
+
+    public function editProduct(Request $request, $id)
     {
 
         $validator = Validator::make($request->all(), ['name' => 'min:5|max:50',
@@ -97,7 +106,7 @@ class produtosController extends \App\Http\Controllers\login\Controller
 
         if ($validator->fails()) {
 
-            return redirect('produtos')
+            return redirect('vizualizacao/produtos')
                 ->withErrors($validator)
                 ->withInput($request->all());
 
@@ -108,13 +117,13 @@ class produtosController extends \App\Http\Controllers\login\Controller
 
         $msgSuccess1 = "O produto foi cadastrado com sucesso";
 
-        return redirect('produtos')
+        return redirect('vizualizacao/produtos')
             ->with('msgSuccess1', $msgSuccess1);
 
 
     }
 
-    public function deletarProduto(produto $produto, $id)
+    public function deleteProduct(produto $produto, $id)
     {
         $deletar = produto::find($id)->delete();
 
@@ -122,25 +131,25 @@ class produtosController extends \App\Http\Controllers\login\Controller
 
             $msgDeleteSuccess = "Item deletado com sucesso";
 
-            return redirect('/produtos')
+            return redirect('vizualizacao/produtos')
                 ->with('msgDeleteSuccess', $msgDeleteSuccess);
 
         } else {
 
             $msgDeleteError = "Não foi possível deletar";
 
-            return redirect('/produtos')
+            return redirect('vizualizacao/produtos')
                 ->with('msgDeleteError', $msgDeleteError);
 
         }
     }
 
-    public function pegarProdutopeloId($id_delete, produto $produto)
+    public function getProductByIdToDelete($id_delete, produto $produto)
     {
 
-        $produtos = produto::all();
+        $products = produto::all();
 
-        return view('produtos.listar-produtos', ['produtos' => $produtos], ['id_delete' => $id_delete]);
+        return view('products.view_products_products-view.blade', ['products' => $products], ['id_delete' => $id_delete]);
     }
 }
 

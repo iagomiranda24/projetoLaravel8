@@ -6,50 +6,52 @@ use App\Http\Controllers\produtos\produtosController;
 
 Route::middleware(['auth'])->group(function () {
 
+    Route::get('novo/produto', [produtosController::class, 'createProduct'])->name('product.get.new.product');
 
+    Route::get('visualizacao/produtos', [produtosController::class, 'readProducts'])->name('product.get.view.product');
 
-    Route::get('cadastrar-produtos', [produtosController::class, 'viewCadastraProdutos']);
+    Route::get('visualizacao/produto/{id}', [produtosController::class, 'getProductByIdTo'])->name('product.get.view.product.id');
 
-    Route::get('produtos', [produtosController::class, 'mostraViewDeProdutos']);
+    Route::post('visualizacao/cadastrar/produtos', [produtosController::class, 'createAnProduct'])->name('product.post.new.product');
 
-    Route::get('produtos/{id}', [produtosController::class, 'mostraProdutoPeloId']);
+    Route::put('editar/produto/{id}', [produtosController::class, 'editProduct'])->name('product.put.edit.product.view.id');
 
-    Route::post('cadastrar-produto', [produtosController::class, 'logicaCadastrarProdutos']);
+    Route::get('editar/produto/{id}', [produtosController::class, 'getProductByIdToEdit'])->name('product.get.view.id');
 
-    Route::put('editar-produto/{id}', [produtosController::class, 'editarProduto']);
+    Route::get('deletar/produto/{id}', [produtosController::class, 'getProductByIdToDelete'])->name('product.get.delete.view.id');
 
-    Route::get('editar-produto/{id}', [produtosController::class, 'pegaProdutoPeloIdParaEditar']);
+    Route::delete('deletar/produto/{id}', [produtosController::class, 'deleteProduct'])->name('product.delete.view.id');
 
-    Route::get('deletar-produto/{id}', [produtosController::class, 'pegarProdutopeloId']);
+    Route::get('visualizacao/usuarios', [usersController::class, 'readUsers'])->name('user.get.view');
 
-    Route::delete('deletar-produto/{id}', [produtosController::class, 'deletarProduto']);
+    Route::get('usuario/{id}', [usersController::class, 'getUserById'])->name('user.get.view.id');
 
-    Route::get('users', [usersController::class, 'listarUsuarios']);
-    Route::get('users/{id}', [usersController::class, 'mostraUserPeloId']);
+    Route::post('logout', [usersController::class, 'logoutUser'])->name('logout.post.view.id');
 
-    Route::post('logout', [usersController::class, 'logout']);
+    Route::get('editar/usuario/{id}', [usersController::class, 'getUserByIdToEdit'])->name('user.get.view.id');
 
+    Route::put('editar/usuario/{id}', [usersController::class, 'editUser'])->name('user.put.view.id');
 
-    Route::get('editar-usuario/{id}', [usersController::class, 'pegaUsuarioPeloIdParaEditar']);
+    Route::get('deletar/usuario/{id}', [usersController::class, 'getUserByIdToDelete'])->name('user.get.view.id');
 
-    Route::put('editar-usuarios/{id}', [usersController::class, 'editarUsuario']);
+    Route::delete('deletar/usuario/{id}', [usersController::class, 'deleteUser'])->name('user.delete.view.id');
 
-    Route::get('deletar-usuarios/{id}', [usersController::class, 'pegaUsuarioPeloIdParaDeletar']);
+});
 
-    Route::delete('deletar-usuarios/{id}', [usersController::class, 'deletarUsuario']);
+Route::group(['middleware' => ['web']], function () {
 
-}); 
+    Route::get('visualizacao/home', [produtosController::class, 'lookHome'])->name('home.get.view');
 
-Route::get('home', [produtosController::class, 'mostraAindex']);
+    Route::get('visualizacao/cadastrar', [usersController::class, 'newUser'])->name('user.post.view');
 
-Route::get('cadastrar', [usersController::class, 'viewCadastraUsuarios']);
+    Route::post('visualizacao/cadastrar/usuario', [usersController::class, 'createAnUser'])->name('user.post.view');
 
-Route::post('cadastrar-usuarios', [usersController::class, 'logicaCadastrarUsuarios']);
+    Route::get('visualizacao/login', [produtosController::class, 'lookLogin'])->name('login.get.view');
 
-Route::get('login', [produtosController::class, 'viewDeLogin'])->name('login');
+    Route::post('autentica/login', [usersController::class, 'authenticateLogin'])->name('login.autentica.post.view');
 
-Route::post('autentica', [usersController::class, 'authenticate']);
+    Route::get('/', function () {
+        return view('welcome');
 
-Route::get('/', function () {
-    return view('welcome');
+    });
 });

@@ -7,7 +7,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-info">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{url('home')}}"> <i class="fa fa-home"></i> Início</a>
+            <a class="navbar-brand" href="{{url('visualizacao/home')}}"> <i class="fa fa-home"></i> Início</a>
             <button class="navbar-toggler" type="button" data-bs-="collapse"
                     data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,15 +17,12 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     @if(Auth::user()->name == "administrador")
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{url('users')}}"> <i class="fa fa-users"></i> Usúarios </a>
+                        <a class="nav-link active" href="{{url('visualizacao/usuarios')}}"> <i class="fa fa-users"></i> Usúarios </a>
                     </li>
                     @endif
                     <li class="nav-item">
-                        <a class="nav-link" href="#"></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{url('/produtos')}}"><i
-                                class="fa fa-list"></i> Listar produtos</a>
+                        <a class="nav-link active" aria-current="page" href="{{url('visualizacao/produtos')}}"><i
+                                class="fa fa-list"></i> produtos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"></a>
@@ -67,11 +64,11 @@
                                 Nome
                             </th>
                             <th>
-                                Descrição
+                                Email
                             </th>
 
                             <th>
-                                Estoque
+                                Password
                             </th>
 
                         </tr>
@@ -79,15 +76,15 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    {{$produto->name}}
+                                    {{$user->name}}
                                 </td>
 
                                 <td>
-                                    {{$produto->descricao}}
+                                    {{$user->email}}
                                 </td>
 
                                 <td>
-                                    {{$produto->estoque}}
+                                    {{$user->password}}
                                 </td>
 
                             </tr>

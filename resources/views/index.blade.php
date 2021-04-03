@@ -25,7 +25,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-info">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{url('index')}}">
+            <a class="navbar-brand" href="{{url('vizualizacao/home')}}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor"
                      class="bi bi-house-fill" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
@@ -42,7 +42,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{url('produtos')}}"><i class=""></i>
+                        <a class="nav-link active" href="{{url('visualizacao/produtos')}}"><i class=""></i>
                             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor"
                                  class="bi bi-view-list" viewBox="0 0 16 16">
                                 <path
@@ -53,7 +53,7 @@
                     @if(isset(Auth::user()->name))
                     @if(Auth::user()->name =="administrador")
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('users')}}">
+                        <a class="nav-link" href="{{url('vizualizacao/usuarios')}}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor"
                                  class="bi bi-people" viewBox="0 0 16 16">
                                 <path
@@ -64,7 +64,7 @@
                 @endif
                     @endif
                     <li class="nav-item" id="nav-item1">
-                        <b><a class="nav-link text-dark" href="{{url('login')}}" aria-disabled="true">
+                        <b><a class="nav-link text-dark" href="{{url('vizualizacao/login')}}" aria-disabled="true">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor"
                                      class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
@@ -103,7 +103,7 @@
                 usuários e também mostrar o usuário pelo seu id.
                 Existe também nesse crud o metódo de login onde, o usuário cadastrado se autentica no sistema.</h5>
             <p class="card-text">.</p>
-            <a href="{{url("users")}}" class="btn btn-primary"> Ir para usuários</a>
+            <a href="{{url("vizualizacao/usuarios")}}" class="btn btn-primary"> Ir para usuários</a>
         </div>
     </div>
     <br>
@@ -116,7 +116,7 @@
             <h5 class="card-title"> Crud de produtos foi criado com o intuito de cadastrar, editar, mostrar todos os
                 produtos e também mostrar o produto pelo seu id.</h5>
             <p class="card-text">.</p>
-            <a href="{{url('produtos')}}" class="btn btn-primary"> Ir para produtos</a>
+            <a href="{{url('visualizacao/produtos')}}" class="btn btn-primary"> Ir para produtos</a>
         </div>
     </div>
     <br>

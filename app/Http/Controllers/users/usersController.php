@@ -4,7 +4,6 @@ namespace App\Http\Controllers\users;
 
 use App\Models\produto;
 use App\Models\User;
-use Illuminate\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -15,12 +14,12 @@ use Symfony\Component\Console\Input\Input;
 
 class usersController extends \App\Http\Controllers\login\Controller
 {
-    public function listarUsuarios()
+    public function readUsers()
     {
-        if ($this->verificaSeExisteUsuarioLogado() == true) {
+        if ($this->checkiFThereIsAUserLoggedIn() == true) {
             $users = User::all();
 
-            return view('users.listar-usuarios', ['users' => $users]);;
+            return view('users.view_users_users-view', ['users' => $users]);;
 
         } else {
 
@@ -30,14 +29,7 @@ class usersController extends \App\Http\Controllers\login\Controller
 
     }
 
-    public function index()
-    {
-
-        return view('index');
-
-    }
-
-    public function logout(Request $request)
+    public function logoutUser(Request $request)
     {
         Auth::logout();
 
@@ -45,18 +37,18 @@ class usersController extends \App\Http\Controllers\login\Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect('visualizacao/login');
 
     }
 
 
-    public function mostraUserPeloId($id)
+    public function getUserById($id)
     {
-        if ($this->verificaSeExisteUsuarioLogado() == true) {
+        if ($this->checkiFThereIsAUserLoggedIn() == true) {
 
             $user = User::find($id);
 
-            return view('users.listar-usuarios-pelo-id', ['user' => $user]);
+            return view('users.view_users_users-view-by-id', ['user' => $user]);
 
         } else {
 
@@ -66,13 +58,13 @@ class usersController extends \App\Http\Controllers\login\Controller
 
     }
 
-    public function viewCadastraUsuarios()
+    public function newUser()
     {
 
-        return view('users.cadastro-login');
+        return view('users.view_register_register-view');
     }
 
-    public function logicaCadastrarUsuarios(Request $request)
+    public function createAnUser(Request $request)
     {
 
         $validator = Validator::make($request->all(), ['name' => 'min:5|required|max:50',
@@ -81,7 +73,7 @@ class usersController extends \App\Http\Controllers\login\Controller
 
         if ($validator->fails()) {
 
-            return redirect('cadastrar')
+            return redirect('visualizacao/cadastrar')
                 ->withErrors($validator)
                 ->withInput($request->all());
 
@@ -99,19 +91,19 @@ class usersController extends \App\Http\Controllers\login\Controller
 
         $user->save();
 
-        return redirect('users')
+        return redirect('visualizacao/usuarios')
             ->with('msgSuccess', $msgSuccess);
     }
 
-    public function pegaUsuarioPeloIdParaEditar($id_editar)
+    public function getUserByIdToEdit($id_editar)
     {
-        if ($this->verificaSeExisteUsuarioLogado() == true) {
+        if ($this->checkiFThereIsAUserLoggedIn() == true) {
 
             $users = User::all();
 
             $userComId = User::find($id_editar);
 
-            return view('users.listar-usuarios', ['users' => $users, 'id_editar' => $id_editar, 'userComId' => $userComId]);
+            return view('users.view_users_users-view', ['users' => $users, 'id_editar' => $id_editar, 'userComId' => $userComId]);
 
         } else {
 
@@ -121,16 +113,16 @@ class usersController extends \App\Http\Controllers\login\Controller
 
     }
 
-    public function editarUsuario(Request $request, $id, User $user)
+    public function editUser(Request $request, $id, User $user)
     {
-        if ($this->verificaSeExisteUsuarioLogado() == true) {
+        if ($this->checkiFThereIsAUserLoggedIn() == true) {
 
             $validator = Validator::make($request->all(), ['name' => 'min:5|max:50',
                 'email' => 'min:10|max:191|unique:users,email']);
 
             if ($validator->fails()) {
 
-                return redirect('users')
+                return redirect('visualizacao/usuarios')
                     ->withErrors($validator)
                     ->withInput($request->all());
 
@@ -138,9 +130,9 @@ class usersController extends \App\Http\Controllers\login\Controller
 
             $atualizar = DB::table('users')->where('id', '=', $id)->update(['name' => $request->name, 'email' => $request->email]);
 
-            $msgSuccess1 = "O produto foi editado    com sucesso";
+            $msgSuccess1 = "O produto foi editado com sucesso";
 
-            return redirect('users')
+            return redirect('visualizacao/usuarios')
                 ->with('msgSuccess1', $msgSuccess1);
 
         } else {
@@ -151,9 +143,9 @@ class usersController extends \App\Http\Controllers\login\Controller
         }
     }
 
-    public function deletarUsuario($id, User $user)
+    public function deleteUser($id, User $user)
     {
-        if ($this->verificaSeExisteUsuarioLogado() == true) {
+        if ($this->checkiFThereIsAUserLoggedIn() == true) {
 
 
             $deletar = $user->find($id)->delete();
@@ -162,14 +154,14 @@ class usersController extends \App\Http\Controllers\login\Controller
 
                 $msgDeleteSuccess = "Item deletado com sucesso";
 
-                return redirect('/users')
+                return redirect('visualizacao/usuarios')
                     ->with('msgDeleteSuccess', $msgDeleteSuccess);
 
             } else {
 
                 $msgDeleteError = "Não foi possível deletar";
 
-                return redirect('/users')
+                return redirect('visualizacao/usuarios')
                     ->with('msgDeleteError', $msgDeleteError);
 
             }
@@ -182,13 +174,13 @@ class usersController extends \App\Http\Controllers\login\Controller
         }
     }
 
-    public function pegaUsuarioPeloIdParaDeletar($id_delete)
+    public function getUserByIdToDelete($id_delete)
     {
-        if ($this->verificaSeExisteUsuarioLogado() == true) {
+        if ($this->checkiFThereIsAUserLoggedIn() == true) {
 
             $users = User::all();
 
-            return view('users.listar-usuarios', ['users' => $users], ['id_delete' => $id_delete]);
+            return view('users.view_users_users-view', ['users' => $users], ['id_delete' => $id_delete]);
 
         } else {
 
@@ -199,7 +191,7 @@ class usersController extends \App\Http\Controllers\login\Controller
     }
 
 
-    public function authenticate(Request $request, User $user)
+    public function authenticateLogin(Request $request, User $user)
     {
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
@@ -208,7 +200,7 @@ class usersController extends \App\Http\Controllers\login\Controller
 
             $msgSuccess = "login efetuado com sucesso";
 
-            return redirect('home')
+            return redirect('visualizacao/login')
                 ->with('msgSuccess', $msgSuccess);
 
         } else {
@@ -221,7 +213,7 @@ class usersController extends \App\Http\Controllers\login\Controller
         }
     }
 
-    public function verificaSeExisteUsuarioLogado()
+    public function checkiFThereIsAUserLoggedIn()
     {
         if (Auth::user()->name == "administrador") {
 
