@@ -33,7 +33,7 @@ class produtosController extends \App\Http\Controllers\login\Controller
 
         } else {
 
-            return redirect('vizualizacao/home');
+            return redirect('visualizacao/home');
 
         }
     }

@@ -56,16 +56,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     @if(Auth::user()->name =="administrador")
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{url('visualizacao/usuarios')}}"> <i class="fa fa-users"></i>  Usúarios </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{url('visualizacao/usuarios')}}"> <i class="fa fa-users"></i>  Usúarios </a>
+                        </li>
                     @endif
                     <li class="nav-item">
                         <a class="nav-link" href="#"></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{url('visualizacao/produtos')}}"><i
-                                class="fa fa-list"></i> Listar produtos</a>
+                                class="fa fa-list"></i>produtos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"></a>
@@ -81,10 +81,9 @@
         </div>
     </nav>
     <br>
-
     <div class="container">
         <a href="{{url('novo/produto}}" class="btn btn-info"><i class="fas fa-plus-square"
-                                                                        style="color:aliceblue"></i> Adicionar produto
+                                                                style="color:aliceblue"></i> Adicionar produto
         </a>
     </div>
     <br>
@@ -151,7 +150,6 @@
     </div>
 
 
-
     <br>
     <br>
     <br>
@@ -201,8 +199,8 @@
                             <form class="form form-login" action='{{url("deletar/produto/$id_delete")}}' method="POST">
                                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                                 <input type="hidden" name="_method" value="DELETE">
+                            </form>
                         </div>
-                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-danger">Deletar</button>
@@ -248,7 +246,9 @@
                                        value="{{$product_id->descricao}}" required>
 
                                 <br>
+                            </form>
                         </div>
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
                             <button type="submit" class="btn btn-success">Salvar</button>
@@ -282,5 +282,4 @@
             $("#table").DataTable();
         });
     </script>
-
-@endsection
+        </div>

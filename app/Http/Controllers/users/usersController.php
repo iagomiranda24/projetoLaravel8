@@ -95,15 +95,15 @@ class usersController extends \App\Http\Controllers\login\Controller
             ->with('msgSuccess', $msgSuccess);
     }
 
-    public function getUserByIdToEdit($id_editar)
+    public function getUserByIdToEdit($id_edit)
     {
         if ($this->checkiFThereIsAUserLoggedIn() == true) {
 
             $users = User::all();
 
-            $user_id = User::find($id_editar);
+            $user_id = User::find($id_edit);
 
-            return view('users.view_users_users-view', ['users' => $users, 'id_editar' => $id_editar, 'user_id' => $user_id]);
+            return view('users.view_users_users-view', ['users' => $users, 'id_edit' => $id_edit, 'user_id' => $user_id]);
 
         } else {
 
@@ -207,7 +207,7 @@ class usersController extends \App\Http\Controllers\login\Controller
 
             $msgError = "Credenciais inválidas";
 
-            return redirect('login')
+            return redirect('visualizacao/login')
                 ->with('msgError', $msgError);
 
         }

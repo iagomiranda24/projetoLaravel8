@@ -72,14 +72,14 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{'visualizacao/usuarios'}}"> <i class="fa fa-users"></i> Usúarios </a>
+                        <a class="nav-link active" href="{{url('visualizacao/usuarios')}}"> <i class="fa fa-users"></i> Usúarios </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{url('visualizacao/produtos')}}"><i
-                                class="fa fa-list"></i> Listar produtos</a>
+                                class="fa fa-list"></i> produtos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"></a>
@@ -219,7 +219,7 @@
                     <div class="modal-body">
                         <p class="text-danger"><b>Deseja realmente excluir esse registro ?</b></p>
                         <div class="modal-body">
-                            <form class="form form-login" action='{{url("deletar/usuarios/$id_delete")}}' method="POST">
+                            <form class="form form-login" action='{{url("deletar/usuario/$id_delete")}}' method="POST">
                                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <br>
@@ -244,7 +244,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="form form-login" action='{{url("editar/usuarios/$id_edit")}}' method="POST">
+                            <form class="form form-login" action='{{url("editar/usuario/$id_edit")}}' method="POST">
                                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                                 <input type="hidden" name="_method" value="PUT">
                                 <label id="label-create-login"> Nome: </label>
@@ -279,7 +279,7 @@
 
                 @endif
 
-                @if(!empty($id_editar))
+                @if(!empty($id_edit))
                     <script>
                         $(document).ready(function () {
                             $("#Modal-edit").modal("show");
