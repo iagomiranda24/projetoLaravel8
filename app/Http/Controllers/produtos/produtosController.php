@@ -92,7 +92,7 @@ class produtosController extends \App\Http\Controllers\login\Controller
 
         $product_id = produto::find($id_edit);
 
-        return view('products.view_products_products-view.blade', ['products' => $products, 'id_edit' => $id_edit, 'produto_Id' => $product_id]);
+        return view('products.view_products_products-view', ['products' => $products, 'id_edit' => $id_edit, 'product_id' => $product_id]);
 
 
     }
@@ -106,7 +106,7 @@ class produtosController extends \App\Http\Controllers\login\Controller
 
         if ($validator->fails()) {
 
-            return redirect('vizualizacao/produtos')
+            return redirect('visualizacao/produtos')
                 ->withErrors($validator)
                 ->withInput($request->all());
 
@@ -117,7 +117,7 @@ class produtosController extends \App\Http\Controllers\login\Controller
 
         $msgSuccess1 = "O produto foi cadastrado com sucesso";
 
-        return redirect('vizualizacao/produtos')
+        return redirect('visualizacao/produtos')
             ->with('msgSuccess1', $msgSuccess1);
 
 
@@ -131,14 +131,14 @@ class produtosController extends \App\Http\Controllers\login\Controller
 
             $msgDeleteSuccess = "Item deletado com sucesso";
 
-            return redirect('vizualizacao/produtos')
+            return redirect('visualizacao/produtos')
                 ->with('msgDeleteSuccess', $msgDeleteSuccess);
 
         } else {
 
             $msgDeleteError = "Não foi possível deletar";
 
-            return redirect('vizualizacao/produtos')
+            return redirect('visualizacao/produtos')
                 ->with('msgDeleteError', $msgDeleteError);
 
         }
@@ -149,7 +149,7 @@ class produtosController extends \App\Http\Controllers\login\Controller
 
         $products = produto::all();
 
-        return view('products.view_products_products-view.blade', ['products' => $products], ['id_delete' => $id_delete]);
+        return view('products.view_products_products-view', ['products' => $products], ['id_delete' => $id_delete]);
     }
 }
 

@@ -72,7 +72,8 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{url('visualizacao/usuarios')}}"> <i class="fa fa-users"></i> Usúarios </a>
+                        <a class="nav-link active" href="{{url('visualizacao/usuarios')}}"> <i class="fa fa-users"></i>
+                            Usúarios </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"></a>
@@ -83,16 +84,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"></a>
-                    </li>
-                    {{--                <li class="nav-item dropdown">--}}
-                    {{--                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">--}}
-                    {{--                    </a>--}}
-                    {{--                    <ul class="" aria-labelledby="navbarDropdown">--}}
-                    {{--                        <li><a class="dropdown-item" href="#">Action</a></li>--}}
-                    {{--                        <li><a class="dropdown-item" href="#">Another action</a></li>--}}
-                    {{--                        <li><hr class="dropdown-divider"></li>--}}
-                    {{--                        <li><a class="dropdown-item" href="#">Something else here</a></li>--}}
-                    {{--                    </ul>--}}
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"></a>
@@ -109,7 +100,8 @@
 
     <div class="container">
         <a href="{{url('visualizacao/cadastrar')}}" class="btn btn-info"><i class="fas fa-plus-square"
-                                                               style="color:aliceblue"></i> Adicionar usúario
+                                                                            style="color:aliceblue"></i> Adicionar
+            usúario
         </a>
     </div>
     <br>
@@ -151,12 +143,12 @@
                                 <td>
                                     <a href='{{url("usuario/$user->id")}}'><i class="fas fa-eye mr-1"></i></a>
                                     @if(Auth::user()->name =="administrador")
-                                    <a href='{{url("editar/usuario/$user->id")}}' id="editar-produto"> <i
-                                            class="fas fa-edit mr-1  text-info"></i></i></a>
+                                        <a href='{{url("editar/usuario/$user->id")}}' id="editar-produto"> <i
+                                                class="fas fa-edit mr-1  text-info"></i></i></a>
                                     @endif
                                     @if(Auth::user()->name =="administrador")
-                                    <a href='{{url("deletar/usuario/$user->id")}}' class="" id="a-delete"><i
-                                            class="fas fa-trash mr-1 text-danger"></i></i></i></a>
+                                        <a href='{{url("deletar/usuario/$user->id")}}' class="" id="a-delete"><i
+                                                class="fas fa-trash mr-1 text-danger"></i></i></i></a>
                                     @endif
                                 </td>
 

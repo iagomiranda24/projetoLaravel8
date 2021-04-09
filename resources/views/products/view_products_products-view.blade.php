@@ -8,7 +8,6 @@
 
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.js"></script>
-
 @section('content')
 
     @if(session('msgDeleteSuccess'))
@@ -57,7 +56,8 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     @if(Auth::user()->name =="administrador")
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{url('visualizacao/usuarios')}}"> <i class="fa fa-users"></i>  Usúarios </a>
+                            <a class="nav-link active" href="{{url('visualizacao/usuarios')}}"> <i
+                                    class="fa fa-users"></i> Usúarios </a>
                         </li>
                     @endif
                     <li class="nav-item">
@@ -65,12 +65,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{url('visualizacao/produtos')}}"><i
-                                class="fa fa-list"></i>produtos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"></a>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"></a>
+                                class="fa fa-list"></i> Produtos </a>
                     </li>
                 </ul>
                 <form class="" method="POST" action="{{url('logout')}}">
@@ -82,8 +77,8 @@
     </nav>
     <br>
     <div class="container">
-        <a href="{{url('novo/produto}}" class="btn btn-info"><i class="fas fa-plus-square"
-                                                                style="color:aliceblue"></i> Adicionar produto
+        <a href="{{url('novo/produto')}}" class="btn btn-info">
+            <i class="fas fa-plus-square" style="color:aliceblue"></i> Adicionar produto
         </a>
     </div>
     <br>
@@ -130,7 +125,8 @@
                                 </td>
 
                                 <td>
-                                    <a href='{{url("visualizacao/produto/$product->id")}}'><i class="fas fa-eye mr-1"></i></a>
+                                    <a href='{{url("visualizacao/produto/$product->id")}}'><i
+                                            class="fas fa-eye mr-1"></i></a>
                                     <a href='{{url("editar/produto/$product->id")}}' id="editar-produto"> <i
                                             class="fas fa-edit mr-1  text-info"></i></a>
                                     <a href='{{url("deletar/produto/$product->id")}}' class="" id="a-delete"><i
@@ -199,12 +195,15 @@
                             <form class="form form-login" action='{{url("deletar/produto/$id_delete")}}' method="POST">
                                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                                 <input type="hidden" name="_method" value="DELETE">
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                    </button>
+                                    <button type="submit" class="btn btn-danger">Deletar</button>
+
+                                </div>
                             </form>
                         </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-danger">Deletar</button>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -246,12 +245,13 @@
                                        value="{{$product_id->descricao}}" required>
 
                                 <br>
-                            </form>
-                        </div>
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-success">Salvar</button>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-success">Salvar</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -282,4 +282,6 @@
             $("#table").DataTable();
         });
     </script>
-        </div>
+
+@endsection
+
