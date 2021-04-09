@@ -1,5 +1,4 @@
 @extends('templates-base.template-base')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="{{asset('assets/sweetalert2-js/dist/sweetalert2.all.js')}}"></script>
 <link rel="stylesheet" href="{{asset('assets/sweetalert2-js/dist/sweetalert2.css')}}">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css"/>
@@ -10,11 +9,6 @@
 <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.js"></script>
 
 @section('content')
-
-
-    <link rel="stylesheet" href="{{asset('assets/DataTables-1.10.23/css/jquery.dataTables.css')}}">
-    <script src="{{asset('assets/DataTables-1.10.23/js/jquery.dataTables.js')}}"></script>
-
     @if(session('msgDeleteSuccess'))
 
         <script>
@@ -279,7 +273,6 @@
                     </script>
 
                 @endif
-
 
                 <script>
                     $(document).ready(function () {

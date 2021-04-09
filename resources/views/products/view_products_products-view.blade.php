@@ -1,13 +1,8 @@
 @extends('templates-base.template-base')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="{{asset('assets/sweetalert2-js/dist/sweetalert2.all.js')}}"></script>
 <link rel="stylesheet" href="{{asset('assets/sweetalert2-js/dist/sweetalert2.css')}}">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css"/>
+<script type="text/javascript" src=""></script>
 
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js"></script>
-
-<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.js"></script>
 @section('content')
 
     @if(session('msgDeleteSuccess'))
@@ -65,7 +60,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{url('visualizacao/produtos')}}"><i
-                                class="fa fa-list"></i> Produtos </a>
+                                class="fa fa-list"></i> Produtos</a>
                     </li>
                 </ul>
                 <form class="" method="POST" action="{{url('logout')}}">
