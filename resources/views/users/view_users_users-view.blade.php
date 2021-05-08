@@ -17,6 +17,22 @@
                 '</b><p class="text-danger">{{session('msgDeleteSuccess')}}</p></b>',
                 ''
             )
+
+
+        </script>
+
+    @endif
+
+@section('content')
+    @if(session('msgDeleteError'))
+
+        <script>
+            Swal.fire(
+                '<p> Error ao deletar </p> <div class="spinner-grow text-danger" role="status"> </div> ',
+                '</b><p class="text-danger">{{session('msgDeleteError')}}</p></b>',
+                ''
+            )
+
         </script>
 
     @endif
@@ -30,9 +46,6 @@
                 ''
             )
 
-            setTimeout(function () {
-                window.location.href = 'view/users';
-            }, 1000);
 
         </script>
 
@@ -47,9 +60,6 @@
                 ''
             )
 
-            setTimeout(function () {
-                window.location.href = '/view/users';
-            }, 2000);
 
         </script>
 
@@ -94,7 +104,7 @@
 
     <div class="container">
         <a href="{{url('view/register')}}" class="btn btn-info"><i class="fas fa-plus-square"
-                                                                            style="color:aliceblue"></i> Adicionar
+                                                                   style="color:aliceblue"></i> Adicionar
             usúario
         </a>
     </div>
@@ -135,7 +145,7 @@
 
 
                                 <td>
-                                    <a href='{{url("user/$user->id")}}'><i class="fas fa-eye mr-1"></i></a>
+                                    <a href='{{url("view/user/$user->id")}}'><i class="fas fa-eye mr-1"></i></a>
                                     @if(Auth::user()->name =="administrador")
                                         <a href='{{url("edit/user/$user->id")}}' id="editar-produto"> <i
                                                 class="fas fa-edit mr-1  text-info"></i></i></a>

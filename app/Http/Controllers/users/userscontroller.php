@@ -4,7 +4,6 @@ namespace App\Http\Controllers\users;
 
 use App\Models\produto;
 use App\Models\User;
-use App\Models\category_user;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use MongoDB\Driver\Session;
 use Symfony\Component\Console\Input\Input;
 
-class usersController extends \App\Http\Controllers\login\Controller
+class userscontroller extends \App\Http\Controllers\login\Controller
 {
     public function readUsers()
     {
@@ -120,7 +119,7 @@ class usersController extends \App\Http\Controllers\login\Controller
         if ($this->checkiFThereIsAUserLoggedIn() == true) {
 
             $validator = Validator::make($request->all(), ['name' => 'min:5|max:50',
-                'email' => 'min:10|max:191|unique:users,email']);
+                'email' => 'min:10|max:191|']);
 
             if ($validator->fails()) {
 
@@ -147,36 +146,31 @@ class usersController extends \App\Http\Controllers\login\Controller
 
     public function deleteUser($id, User $user)
     {
-        if ($this->checkiFThereIsAUserLoggedIn() == true) {
+        try {
+            if ($this->checkiFThereIsAUserLoggedIn() == true) {
 
-
-            $delete = $user->find($id)->delete();
-
-            if ($delete) {
+                $delete = $user->find($id)->delete();
 
                 $msgDeleteSuccess = "Item deletado com sucesso";
 
                 return redirect('view/users')
                     ->with('msgDeleteSuccess', $msgDeleteSuccess);
 
-            } else {
-
-                $msgDeleteError = "Não foi possível deletar";
-
-                return redirect('view/users')
-                    ->with('msgDeleteError', $msgDeleteError);
-
             }
 
-        } else {
+        } catch (\Throwable $e) {
 
-            return view('index');
+        $msgDeleteError = "Não é possível excluir um usuário, sem excluir os produtos cadastrados por ele";;
 
+        return redirect('view/users')
+            ->with('msgDeleteError', $msgDeleteError);
 
-        }
     }
 
-    public function getUserByIdToDelete($id_delete)
+}
+
+    public
+    function getUserByIdToDelete($id_delete)
     {
         if ($this->checkiFThereIsAUserLoggedIn() == true) {
 
@@ -193,7 +187,8 @@ class usersController extends \App\Http\Controllers\login\Controller
     }
 
 
-    public function authenticateLogin(Request $request, User $user)
+    public
+    function authenticateLogin(Request $request, User $user)
     {
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
@@ -215,7 +210,8 @@ class usersController extends \App\Http\Controllers\login\Controller
         }
     }
 
-    public function checkiFThereIsAUserLoggedIn()
+    public
+    function checkiFThereIsAUserLoggedIn()
     {
         if (Auth::user()->name == "administrador") {
 

@@ -41,6 +41,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    @if(Auth::check() == "true")
                     <li class="nav-item">
                         <a class="nav-link active" href="{{url('view/products')}}"><i class=""></i>
                             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor"
@@ -50,10 +51,11 @@
                             </svg>
                             Produtos</a>
                     </li>
+                    @endif
                     @if(isset(Auth::user()->name))
                     @if(Auth::user()->name =="administrador")
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('view/users')}}">
+                        <a class="nav-link" href="{{url('view/users')}}" id="login">
                             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor"
                                  class="bi bi-people" viewBox="0 0 16 16">
                                 <path
@@ -64,7 +66,7 @@
                 @endif
                     @endif
                     <li class="nav-item" id="nav-item1">
-                        <b><a class="nav-link text-dark" href="{{url('view/login')}}" aria-disabled="true">
+                        <b><a class="nav-link text-dark" href="{{url('view/login')}}" id="login-" aria-disabled="true">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor"
                                      class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
@@ -134,5 +136,13 @@
             </p>
         </footer>
     </div>
+@if(Auth::user())
+    <script>
+            $("#login-").click(function(){
+                alert("Você já está logado");
+            });
+    </script>
+@endif
+
 @endsection
 

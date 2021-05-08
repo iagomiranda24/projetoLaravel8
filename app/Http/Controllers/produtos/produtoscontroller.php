@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use phpDocumentor\Reflection\DocBlock\Tags\Author;
 
-class produtosController extends \App\Http\Controllers\login\Controller
+class produtoscontroller extends \App\Http\Controllers\login\Controller
 {
     public function createProduct()
     {
@@ -124,7 +124,7 @@ class produtosController extends \App\Http\Controllers\login\Controller
         }
 
 
-        $atualizar = DB::table('produtos')->where('id','=',$id)->update(['name' =>$request->name, 'descricao' =>  $request->descricao, 'estoque' => $request->estoque]);
+        $atualizar = DB::table('products')->where('id','=',$id)->update(['name' =>$request->name, 'descricao' =>  $request->descricao, 'estoque' => $request->estoque]);
 
         $msgSuccess = "O produto foi cadastrado com sucesso";
 

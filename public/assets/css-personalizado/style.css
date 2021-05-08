@@ -131,6 +131,5 @@ border: 4px solid;
     border-radius: 20px;
 }
  #nav-item1 {
-     position: absolute;
-     right: 50%;
+     text-align: center !important;
  }

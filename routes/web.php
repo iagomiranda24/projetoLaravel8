@@ -1,54 +1,54 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\users\usersController;
-use App\Http\Controllers\produtos\produtosController;
+use App\Http\Controllers\users\userscontroller;
+use App\Http\Controllers\produtos\produtoscontroller;
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('new/product', [produtosController::class, 'createProduct'])->name('product.get.new.product');
+    Route::get('new/product', [produtoscontroller::class, 'createProduct'])->name('product.get.new.product');
 
-    Route::get('view/products', [produtosController::class, 'readProducts'])->name('product.get.view.product');
+    Route::get('view/products', [produtoscontroller::class, 'readProducts'])->name('product.get.view.product');
 
-    Route::get('view/product/{id}', [produtosController::class, 'getProductByIdTo'])->name('product.get.view.product.id');
+    Route::get('view/product/{id}', [produtoscontroller::class, 'getProductByIdTo'])->name('product.get.view.product.id');
 
-    Route::post('view/register/product', [produtosController::class, 'createAnProduct'])->name('product.post.new.product');
+    Route::post('view/register/product', [produtoscontroller::class, 'createAnProduct'])->name('product.post.new.product');
 
-    Route::put('edit/product/{id}', [produtosController::class, 'editProduct'])->name('product.put.edit.product.view.id');
+    Route::put('edit/product/{id}', [produtoscontroller::class, 'editProduct'])->name('product.put.edit.product.view.id');
 
-    Route::get('edit/product/{id}', [produtosController::class, 'getProductByIdToEdit'])->name('product.get.view.id');
+    Route::get('edit/product/{id}', [produtoscontroller::class, 'getProductByIdToEdit'])->name('product.get.view.id');
 
-    Route::get('delete/product/{id}', [produtosController::class, 'getProductByIdToDelete'])->name('product.get.delete.view.id');
+    Route::get('delete/product/{id}', [produtoscontroller::class, 'getProductByIdToDelete'])->name('product.get.delete.view.id');
 
-    Route::delete('delete/product/{id}', [produtosController::class, 'deleteProduct'])->name('product.delete.view.id');
+    Route::delete('delete/product/{id}', [produtoscontroller::class, 'deleteProduct'])->name('product.delete.view.id');
 
-    Route::get('view/users', [usersController::class, 'readUsers'])->name('user.get.view');
+    Route::get('view/users', [userscontroller::class, 'readUsers'])->name('user.get.view');
 
-    Route::get('users/{id}', [usersController::class, 'getUserById'])->name('user.get.view.id');
+    Route::get('view/user/{id}', [userscontroller::class, 'getUserById'])->name('user.get.view.id');
 
-    Route::post('logout', [usersController::class, 'logoutUser'])->name('logout.post.view.id');
+    Route::post('logout', [userscontroller::class, 'logoutUser'])->name('logout.post.view.id');
 
-    Route::get('edit/users/{id}', [usersController::class, 'getUserByIdToEdit'])->name('user.get.view.id');
+    Route::get('edit/user/{id}', [userscontroller::class, 'getUserByIdToEdit'])->name('user.get.view.id');
 
-    Route::put('edit/users/{id}', [usersController::class, 'editUser'])->name('user.put.view.id');
+    Route::put('edit/user/{id}', [userscontroller::class, 'editUser'])->name('user.put.view.id');
 
-    Route::get('delete/users/{id}', [usersController::class, 'getUserByIdToDelete'])->name('user.get.view.id');
+    Route::get('delete/user/{id}', [userscontroller::class, 'getUserByIdToDelete'])->name('user.get.view.id');
 
-    Route::delete('delete/users/{id}', [usersController::class, 'deleteUser'])->name('user.delete.view.id');
+    Route::delete('delete/user/{id}', [userscontroller::class, 'deleteUser'])->name('user.delete.view.id');
 
 });
 
 Route::group(['middleware' => ['web']], function () {
 
-    Route::get('view/home', [produtosController::class, 'lookHome'])->name('home.get.view');
+    Route::get('view/home', [produtoscontroller::class, 'lookHome'])->name('home.get.view');
 
-    Route::get('view/register', [usersController::class, 'newUser'])->name('user.post.view');
+    Route::get('view/register', [userscontroller::class, 'newUser'])->name('user.post.view');
 
-    Route::post('view/register/user', [usersController::class, 'createAnUser'])->name('user.post.view');
+    Route::post('view/register/user', [userscontroller::class, 'createAnUser'])->name('user.post.view');
 
-    Route::get('view/login', [produtosController::class, 'lookLogin'])->name('login.get.view');
+    Route::get('view/login', [produtoscontroller::class, 'lookLogin'])->name('login.get.view');
 
-    Route::post('autenticate/login', [usersController::class, 'authenticateLogin'])->name('login.autentica.post.view');
+    Route::post('autenticate/login', [userscontroller::class, 'authenticateLogin'])->name('login.autentica.post.view');
 
     Route::get('/', function () {
         return view('welcome');
