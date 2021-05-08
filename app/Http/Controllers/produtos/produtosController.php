@@ -46,12 +46,13 @@ class produtosController extends \App\Http\Controllers\login\Controller
 
             return view('products.view_products_products-view', ['products' => $products]);
 
+        } else {
+
+            $products = DB::table('products')->where('users_id', '=', Auth::user()->id)->get();
+
+            return view('products.view_products_products-view', ['products' => $products]);
+
         }
-
-        $products = DB::table('products')->where('users_id', '=', Auth::user()->id)->get();
-
-        return view('products.view_products_products-view', ['products' => $products]);
-
     }
 
 
