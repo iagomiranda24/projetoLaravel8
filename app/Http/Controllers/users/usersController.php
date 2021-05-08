@@ -4,6 +4,7 @@ namespace App\Http\Controllers\users;
 
 use App\Models\produto;
 use App\Models\User;
+use App\Models\category_user;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -37,7 +38,7 @@ class usersController extends \App\Http\Controllers\login\Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('visualizacao/login');
+        return redirect('view/login');
 
     }
 
@@ -73,7 +74,7 @@ class usersController extends \App\Http\Controllers\login\Controller
 
         if ($validator->fails()) {
 
-            return redirect('visualizacao/cadastrar')
+            return redirect('view/register')
                 ->withErrors($validator)
                 ->withInput($request->all());
 
@@ -91,7 +92,8 @@ class usersController extends \App\Http\Controllers\login\Controller
 
         $user->save();
 
-        return redirect('visualizacao/usuarios')
+
+        return redirect('view/users')
             ->with('msgSuccess', $msgSuccess);
     }
 
@@ -122,7 +124,7 @@ class usersController extends \App\Http\Controllers\login\Controller
 
             if ($validator->fails()) {
 
-                return redirect('visualizacao/usuarios')
+                return redirect('view/users')
                     ->withErrors($validator)
                     ->withInput($request->all());
 
@@ -132,7 +134,7 @@ class usersController extends \App\Http\Controllers\login\Controller
 
             $msgSuccess1 = "O produto foi editado com sucesso";
 
-            return redirect('visualizacao/usuarios')
+            return redirect('view/users')
                 ->with('msgSuccess1', $msgSuccess1);
 
         } else {
@@ -154,14 +156,14 @@ class usersController extends \App\Http\Controllers\login\Controller
 
                 $msgDeleteSuccess = "Item deletado com sucesso";
 
-                return redirect('visualizacao/usuarios')
+                return redirect('view/users')
                     ->with('msgDeleteSuccess', $msgDeleteSuccess);
 
             } else {
 
                 $msgDeleteError = "Não foi possível deletar";
 
-                return redirect('visualizacao/usuarios')
+                return redirect('view/users')
                     ->with('msgDeleteError', $msgDeleteError);
 
             }
@@ -200,14 +202,14 @@ class usersController extends \App\Http\Controllers\login\Controller
 
             $msgSuccess = "login efetuado com sucesso";
 
-            return redirect('visualizacao/login')
+            return redirect('view/login')
                 ->with('msgSuccess', $msgSuccess);
 
         } else {
 
             $msgError = "Credenciais inválidas";
 
-            return redirect('visualizacao/login')
+            return redirect('view/login')
                 ->with('msgError', $msgError);
 
         }

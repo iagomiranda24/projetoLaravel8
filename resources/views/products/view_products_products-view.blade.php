@@ -15,7 +15,7 @@
             )
 
             setTimeout(function () {
-                window.location.href = '/visualizacao/produtos';
+                window.location.href = '/view/products';
             }, 2000);
 
         </script>
@@ -26,13 +26,30 @@
 
         <script>
             Swal.fire(
-                '<p>Editando </p> <div class="spinner-grow text-info" role="status"> </div> ',
+                '<p>Cadastrando </p> <div class="spinner-grow text-info" role="status"> </div> ',
                 '</b><p class="text-success">{{session('msgSuccess1')}}</p></b>',
                 ''
             )
 
             setTimeout(function () {
-                window.location.href = '/visualizacao/produtos';
+                window.location.href = '/view/products';
+            }, 2000);
+
+        </script>
+
+    @endif
+
+    @if(session('msgSuccess1'))
+
+        <script>
+            Swal.fire(
+                '<p>Cadastrando </p> <div class="spinner-grow text-info" role="status"> </div> ',
+                '</b><p class="text-success">{{session('msgSuccess1')}}</p></b>',
+                ''
+            )
+
+            setTimeout(function () {
+                window.location.href = '/view/products';
             }, 2000);
 
         </script>
@@ -41,7 +58,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-info">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{url('visualizacao/home')}}"> <i class="fa fa-home"></i> Início</a>
+            <a class="navbar-brand" href="{{url('view/home')}}"> <i class="fa fa-home"></i> Início</a>
             <button class="navbar-toggler" type="button" data-bs-="collapse"
                     data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +68,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     @if(Auth::user()->name =="administrador")
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{url('visualizacao/usuarios')}}"> <i
+                            <a class="nav-link active" href="{{url('view/users')}}"> <i
                                     class="fa fa-users"></i> Usúarios </a>
                         </li>
                     @endif
@@ -59,7 +76,7 @@
                         <a class="nav-link" href="#"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{url('visualizacao/produtos')}}"><i
+                        <a class="nav-link active" aria-current="page" href="{{url('view/products')}}"><i
                                 class="fa fa-list"></i> Produtos</a>
                     </li>
                 </ul>
@@ -72,7 +89,7 @@
     </nav>
     <br>
     <div class="container">
-        <a href="{{url('novo/produto')}}" class="btn btn-info">
+        <a href="{{url('new/product')}}" class="btn btn-info">
             <i class="fas fa-plus-square" style="color:aliceblue"></i> Adicionar produto
         </a>
     </div>
@@ -120,11 +137,11 @@
                                 </td>
 
                                 <td>
-                                    <a href='{{url("visualizacao/produto/$product->id")}}'><i
+                                    <a href='{{url("view/product/$product->id")}}'><i
                                             class="fas fa-eye mr-1"></i></a>
-                                    <a href='{{url("editar/produto/$product->id")}}' id="editar-produto"> <i
+                                    <a href='{{url("edit/product/$product->id")}}' id="editar-produto"> <i
                                             class="fas fa-edit mr-1  text-info"></i></a>
-                                    <a href='{{url("deletar/produto/$product->id")}}' class="" id="a-delete"><i
+                                    <a href='{{url("delete/product/$product->id")}}' class="" id="a-delete"><i
                                             class="fas fa-trash mr-1 text-danger"></i></a>
 
                                 </td>
@@ -187,7 +204,7 @@
                     <div class="modal-body">
                         <p class="text-danger"><b>Deseja realmente excluir esse registro ?</b></p>
                         <div class="modal-body">
-                            <form class="form form-login" action='{{url("deletar/produto/$id_delete")}}' method="POST">
+                            <form class="form form-login" action='{{url("delete/product/$id_delete")}}' method="POST">
                                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                                 <input type="hidden" name="_method" value="DELETE">
 
@@ -216,7 +233,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="form form-login" action='{{url("editar/produto/$id_edit")}}' method="POST">
+                            <form class="form form-login" action='{{url("edit/product/$id_edit")}}' method="POST">
                                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                                 <input type="hidden" name="_method" value="PUT">
                                 <label id="label-create-login"> Nome: </label>

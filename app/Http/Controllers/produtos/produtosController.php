@@ -33,19 +33,27 @@ class produtosController extends \App\Http\Controllers\login\Controller
 
         } else {
 
-            return redirect('visualizacao/home');
+            return redirect('view/home');
 
         }
     }
 
     public function readProducts()
     {
+        if (Auth::user()->name == "administrador") {
 
-        $products = produto::all();
+            $products = produto::all();
+
+            return view('products.view_products_products-view', ['products' => $products]);
+
+        }
+
+        $products = DB::table('products')->where('users_id', '=', Auth::user()->id)->get();
 
         return view('products.view_products_products-view', ['products' => $products]);
 
     }
+
 
     public function getProductByIdTo($id)
     {
@@ -65,7 +73,7 @@ class produtosController extends \App\Http\Controllers\login\Controller
 
         if ($validator->fails()) {
 
-            return redirect('novo/produto')
+            return redirect('new/produto')
                 ->withErrors($validator)
                 ->withInput($request->all());
 
@@ -73,16 +81,18 @@ class produtosController extends \App\Http\Controllers\login\Controller
 
         $produto = new produto();
 
+
         $produto->name = $request->name;
         $produto->descricao = $request->descricao;
         $produto->estoque = $request->estoque;
+        $produto->users_id =  $request->users_id;
 
         $msgSuccess = "O produto foi cadastrado com sucesso";
 
         $produto->save();
 
-        return redirect('novo/produto')
-            ->with('msgSuccess', $msgSuccess);
+        return redirect('view/products')
+            ->with('msgSuccess1', $msgSuccess);
 
     }
 
@@ -106,7 +116,7 @@ class produtosController extends \App\Http\Controllers\login\Controller
 
         if ($validator->fails()) {
 
-            return redirect('visualizacao/produtos')
+            return redirect('view/products')
                 ->withErrors($validator)
                 ->withInput($request->all());
 
@@ -115,10 +125,10 @@ class produtosController extends \App\Http\Controllers\login\Controller
 
         $atualizar = DB::table('produtos')->where('id','=',$id)->update(['name' =>$request->name, 'descricao' =>  $request->descricao, 'estoque' => $request->estoque]);
 
-        $msgSuccess1 = "O produto foi cadastrado com sucesso";
+        $msgSuccess = "O produto foi cadastrado com sucesso";
 
-        return redirect('visualizacao/produtos')
-            ->with('msgSuccess1', $msgSuccess1);
+        return redirect('view/products')
+            ->with('msgSuccess', $msgSuccess);
 
 
     }
@@ -131,14 +141,14 @@ class produtosController extends \App\Http\Controllers\login\Controller
 
             $msgDeleteSuccess = "Item deletado com sucesso";
 
-            return redirect('visualizacao/produtos')
+            return redirect('view/products')
                 ->with('msgDeleteSuccess', $msgDeleteSuccess);
 
         } else {
 
             $msgDeleteError = "Não foi possível deletar";
 
-            return redirect('visualizacao/produtos')
+            return redirect('view/products')
                 ->with('msgDeleteError', $msgDeleteError);
 
         }

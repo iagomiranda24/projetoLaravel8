@@ -31,7 +31,7 @@
             )
 
             setTimeout(function () {
-                window.location.href = 'visualizacao/usuarios';
+                window.location.href = 'view/users';
             }, 1000);
 
         </script>
@@ -48,7 +48,7 @@
             )
 
             setTimeout(function () {
-                window.location.href = '/visualizacao/usuarios';
+                window.location.href = '/view/users';
             }, 2000);
 
         </script>
@@ -57,7 +57,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-info">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{url('visualizacao/home')}}"> <i class="fa fa-home"></i> Início</a>
+            <a class="navbar-brand" href="{{url('view/home')}}"> <i class="fa fa-home"></i> Início</a>
             <button class="navbar-toggler" type="button" data-bs-="collapse"
                     data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,14 +66,14 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{url('visualizacao/usuarios')}}"> <i class="fa fa-users"></i>
+                        <a class="nav-link active" href="{{url('view/users')}}"> <i class="fa fa-users"></i>
                             Usúarios </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{url('visualizacao/produtos')}}"><i
+                        <a class="nav-link active" aria-current="page" href="{{url('view/products')}}"><i
                                 class="fa fa-list"></i> produtos</a>
                     </li>
                     <li class="nav-item">
@@ -93,7 +93,7 @@
     <br>
 
     <div class="container">
-        <a href="{{url('visualizacao/cadastrar')}}" class="btn btn-info"><i class="fas fa-plus-square"
+        <a href="{{url('view/register')}}" class="btn btn-info"><i class="fas fa-plus-square"
                                                                             style="color:aliceblue"></i> Adicionar
             usúario
         </a>
@@ -135,13 +135,13 @@
 
 
                                 <td>
-                                    <a href='{{url("usuario/$user->id")}}'><i class="fas fa-eye mr-1"></i></a>
+                                    <a href='{{url("user/$user->id")}}'><i class="fas fa-eye mr-1"></i></a>
                                     @if(Auth::user()->name =="administrador")
-                                        <a href='{{url("editar/usuario/$user->id")}}' id="editar-produto"> <i
+                                        <a href='{{url("edit/user/$user->id")}}' id="editar-produto"> <i
                                                 class="fas fa-edit mr-1  text-info"></i></i></a>
                                     @endif
                                     @if(Auth::user()->name =="administrador")
-                                        <a href='{{url("deletar/usuario/$user->id")}}' class="" id="a-delete"><i
+                                        <a href='{{url("delete/user/$user->id")}}' class="" id="a-delete"><i
                                                 class="fas fa-trash mr-1 text-danger"></i></i></i></a>
                                     @endif
                                 </td>
@@ -205,7 +205,7 @@
                     <div class="modal-body">
                         <p class="text-danger"><b>Deseja realmente excluir esse registro ?</b></p>
                         <div class="modal-body">
-                            <form class="form form-login" action='{{url("deletar/usuario/$id_delete")}}' method="POST">
+                            <form class="form form-login" action='{{url("delete/user/$id_delete")}}' method="POST">
                                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <br>
@@ -230,7 +230,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="form form-login" action='{{url("editar/usuario/$id_edit")}}' method="POST">
+                            <form class="form form-login" action='{{url("edit/user/$id_edit")}}' method="POST">
                                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                                 <input type="hidden" name="_method" value="PUT">
                                 <label id="label-create-login"> Nome: </label>
